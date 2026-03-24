@@ -1,0 +1,9 @@
+{
+  "name": "anominie",
+  "version": "1.0.0",
+  "description": "Secure anonymous messaging platform",
+  "scripts": {
+    "build": "echo 'Static site - no build required'",
+    "start": "echo 'Deployment complete'"
+  }
+}
