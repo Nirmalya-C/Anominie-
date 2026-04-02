@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 const app = express();
@@ -12,31 +13,16 @@ app.use(cors());
 app.use(express.json({ limit: '1mb' }));
 
 let db = null;
-const rateLimitStore = new Map();
 const RATE_LIMIT_WINDOW_MS = Number(process.env.RATE_LIMIT_WINDOW_MS) || 60 * 1000;
 const RATE_LIMIT_MAX_REQUESTS = Number(process.env.RATE_LIMIT_MAX_REQUESTS) || 120;
 
-function apiRateLimit(req, res, next) {
-  const now = Date.now();
-  const ip = (req.headers['x-forwarded-for'] || req.ip || req.socket?.remoteAddress || 'unknown')
-    .toString()
-    .split(',')[0]
-    .trim();
-  const key = `${ip}:${req.path}`;
-
-  const current = rateLimitStore.get(key);
-  if (!current || now > current.resetAt) {
-    rateLimitStore.set(key, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
-    return next();
-  }
-
-  current.count += 1;
-  if (current.count > RATE_LIMIT_MAX_REQUESTS) {
-    return res.status(429).json({ error: 'Too many requests. Please try again later.' });
-  }
-
-  return next();
-}
+const apiRateLimit = rateLimit({
+  windowMs: RATE_LIMIT_WINDOW_MS,
+  limit: RATE_LIMIT_MAX_REQUESTS,
+  standardHeaders: 'draft-7',
+  legacyHeaders: false,
+  message: { error: 'Too many requests. Please try again later.' }
+});
 
 async function connectDatabase() {
   if (!mongoUri) {
