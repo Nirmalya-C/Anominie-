@@ -54,53 +54,41 @@ Anominie- is an experimental project that provides a safe, anonymous space for u
 
 ### Prerequisites
 - Node.js (v14 or higher)
-- npm or yarn
-- MongoDB (if applicable)
+- npm
 
 ### Steps
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Nirmalya12345/Anominie-
+   git clone https://github.com/Nirmalya-C/Anominie-
    cd Anominie-
    ```
 
-2. **Install dependencies**
+2. **Frontend (static)**
+   - Open `index.html` (or `anonymous_chat.html`) directly in your browser, or deploy the root folder on GitHub Pages.
+
+3. **Backend (optional local API server)**
    ```bash
+   cd backend
    npm install
-   ```
-
-3. **Set up environment variables**
-   ```bash
-   cp .env.example .env
-   # Edit .env with your configuration
-   ```
-
-4. **Start the development server**
-   ```bash
    npm start
    ```
+   Backend server runs on `http://localhost:3000` by default.
 
-5. **Access the application**
-   - Open your browser and navigate to `http://localhost:3000`
+4. **Database**
+   - MongoDB is listed as a dependency, but no database connection is currently implemented in `backend/server.js`.
 
 ---
 
 ## 🚀 Usage
 
-### Starting the Application
+### Frontend
+- Use the GitHub Pages URL (serves `index.html`, which redirects to `anonymous_chat.html`).
+
+### Backend (optional)
 ```bash
+cd backend
 npm start
-```
-
-### For Development
-```bash
-npm run dev
-```
-
-### Building for Production
-```bash
-npm run build
 ```
 
 ---
@@ -109,19 +97,14 @@ npm run build
 
 ```
 Anominie-/
-├── public/                 # Static files
-├── src/
-│   ├── components/         # React components
-│   ├── pages/              # Page components
-│   ├── styles/             # CSS/styling files
-│   ├── utils/              # Utility functions
-│   └── App.js              # Main app component
-├── server/                 # Backend (if applicable)
-│   ├── routes/             # API routes
-│   ├── models/             # Database models
-│   └── controllers/        # Route controllers
-├── .env.example            # Environment variables template
-├── package.json            # Project metadata
+├── index.html              # GitHub Pages entrypoint (redirects to chat page)
+├── anonymous_chat.html     # Main frontend page
+├── chat_styles.css         # Frontend styles
+├── chat_script.js          # Frontend behavior
+├── backend/
+│   ├── server.js           # Node/Express backend entry
+│   └── package.json        # Backend dependencies and scripts
+├── vercel.json             # Vercel deployment config
 └── README.md               # This file
 ```
 
