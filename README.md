@@ -42,20 +42,19 @@ Anominie- is an experimental project that provides a safe, anonymous space for u
 
 ## 🛠 Technologies
 
-- **Frontend**: React / HTML / CSS / JavaScript
-- **Backend**: Node.js / Express.js
-- **Database**: MongoDB (or your choice)
-- **AI Integration**: AI/ML Libraries
-- **Others**: Socket.io (for real-time communication)
+- **Frontend**: HTML / CSS / JavaScript (interactive single-page chat UI)
+- **Backend**: Node.js / Express.js REST API
+- **Database**: MongoDB (optional, with no-DB fallback mode)
+- **Deployment**: GitHub Pages for frontend + Node host for backend API
 
 ---
 
 ## 📦 Installation
 
 ### Prerequisites
-- Node.js (v14 or higher)
-- npm or yarn
-- MongoDB (if applicable)
+- Node.js (v18 or higher)
+- npm
+- MongoDB (optional; required only for persistent message storage)
 
 ### Steps
 
@@ -65,43 +64,49 @@ Anominie- is an experimental project that provides a safe, anonymous space for u
    cd Anominie-
    ```
 
-2. **Install dependencies**
+2. **Install backend dependencies**
    ```bash
+   cd backend
    npm install
    ```
 
 3. **Set up environment variables**
    ```bash
-   cp .env.example .env
-   # Edit .env with your configuration
+   # create backend/.env and configure:
+   # PORT=3000
+   # MONGODB_URI=your_mongodb_connection_string
+   # MONGODB_DB=anominie
    ```
 
-4. **Start the development server**
+4. **Start the backend server**
    ```bash
+   cd backend
    npm start
    ```
 
 5. **Access the application**
-   - Open your browser and navigate to `http://localhost:3000`
+   - Open `anonymous_chat.html` in a browser for local frontend testing
+   - Or use the GitHub Pages deployment URL after pushing to `main`
 
 ---
 
 ## 🚀 Usage
 
-### Starting the Application
+### Starting the Backend API
 ```bash
+cd backend
 npm start
 ```
 
-### For Development
-```bash
-npm run dev
-```
+### Available API Endpoints
+- `GET /health` — returns service and database status
+- `GET /api/messages` — returns recent chat messages
+- `POST /api/messages` — creates message with `{ "sender": "...", "text": "..." }`
 
-### Building for Production
-```bash
-npm run build
-```
+### GitHub Pages Deployment
+- Workflow: `.github/workflows/pages.yml`
+- Trigger: push to `main`
+- Publishes static frontend (`anonymous_chat.html` as `index.html`)
 
 ---
 
@@ -109,20 +114,15 @@ npm run build
 
 ```
 Anominie-/
-├── public/                 # Static files
-├── src/
-│   ├── components/         # React components
-│   ├── pages/              # Page components
-│   ├── styles/             # CSS/styling files
-│   ├── utils/              # Utility functions
-│   └── App.js              # Main app component
-├── server/                 # Backend (if applicable)
-│   ├── routes/             # API routes
-│   ├── models/             # Database models
-│   └── controllers/        # Route controllers
-├── .env.example            # Environment variables template
-├── package.json            # Project metadata
-└── README.md               # This file
+├── anonymous_chat.html      # Frontend entry page
+├── chat_styles.css          # Frontend styles
+├── chat_script.js           # Frontend behavior
+├── backend/
+│   ├── server.js            # Express API server
+│   └── package.json         # Backend scripts and dependencies
+├── .github/workflows/
+│   └── pages.yml            # GitHub Pages deployment workflow
+└── README.md                # Project documentation
 ```
 
 ---
