@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anominie - Anonymous Chat</title>
     <link rel="stylesheet" href="chat_styles.css">
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
 </head>
 <body>
     <!-- Login Screen -->
@@ -91,10 +92,14 @@
         <div class="chat-container">
             <div class="header">
                 <div class="user-info">
-                    <span id="displayUsername">User</span> 
+                    <span id="displayUsername">User</span>
                     <span class="country-tag" id="displayCountry">(Unknown)</span>
                 </div>
                 <p>You are chatting anonymously. Be respectful!</p>
+                <div class="online-status">
+                    <span class="online-indicator"></span>
+                    <span id="onlineCount">0</span> users online
+                </div>
             </div>
             
             <div id="messagesContainer" class="messages-container">
