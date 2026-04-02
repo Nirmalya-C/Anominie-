@@ -12,6 +12,11 @@
         <div class="container">
             <h1>Anominie</h1>
             <p>Connect anonymously with people around the world</p>
+            <div class="feature-pills" aria-label="App highlights">
+                <span class="pill">⚡ Live Chat</span>
+                <span class="pill">🕶️ Anonymous</span>
+                <span class="pill">🌍 Global</span>
+            </div>
             
             <form id="loginForm">
                 <div class="login-options">
@@ -95,11 +100,16 @@
                     <span class="country-tag" id="displayCountry">(Unknown)</span>
                 </div>
                 <p>You are chatting anonymously. Be respectful!</p>
+                <div class="chat-actions">
+                    <button id="clearChatButton" type="button">Clear Chat</button>
+                    <button id="newMatchButton" type="button">New Match</button>
+                </div>
             </div>
             
             <div id="messagesContainer" class="messages-container">
                 <!-- Messages will appear here -->
             </div>
+            <div id="typingIndicator" class="typing-indicator hidden">Someone is typing…</div>
             
             <div class="input-area">
                 <input type="text" id="messageInput" placeholder="Type your message..." maxlength="500">

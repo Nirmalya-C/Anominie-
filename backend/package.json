@@ -1,1 +1,22 @@
-{\n  \"name\": \"anominie\",\n  \"version\": \"1.0.0\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"start\": \"node index.js\"\n  },\n  \"dependencies\": {\n    \"express\": \"^4.17.1\",\n    \"mongodb\": \"^3.6.6\",\n    \"socket.io\": \"^4.0.0\",\n    \"cors\": \"^2.8.5\",\n    \"dotenv\": \"^10.0.0\",\n    \"jsonwebtoken\": \"^8.5.1\"\n  }\n}
+{
+  "name": "anominie-backend",
+  "version": "1.1.0",
+  "description": "Backend API for Anominie anonymous chat",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "express-rate-limit": "^8.3.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.18.0",
+    "socket.io": "^4.8.1"
+  }
+}

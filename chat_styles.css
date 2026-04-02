@@ -6,7 +6,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #121212;
+    background: radial-gradient(circle at 10% 20%, #1f2a44 0%, #121212 35%, #0d1018 100%);
     color: #e4e6eb;
     height: 100vh;
     display: flex;
@@ -19,11 +19,12 @@ body {
     max-width: 500px;
     height: 90vh;
     background-color: #1e1e1e;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    border-radius: 14px;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    border: 1px solid #2f3a51;
 }
 
 .container {
@@ -50,6 +51,23 @@ p {
     margin-bottom: 20px;
     text-align: center;
     color: #b0b3b8;
+}
+
+.feature-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+
+.pill {
+    border: 1px solid #3b4a68;
+    background: #1a2538;
+    color: #bcd3ff;
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 12px;
 }
 
 .login-options {
@@ -172,6 +190,26 @@ input, select {
     border-bottom: 1px solid #4a4a4a;
 }
 
+.chat-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.chat-actions button {
+    border: 1px solid #4a4a4a;
+    background: #1d2533;
+    color: #d5e4ff;
+    border-radius: 7px;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.chat-actions button:hover {
+    background: #263149;
+}
+
 .user-info {
     display: flex;
     justify-content: center;
@@ -192,7 +230,7 @@ input, select {
     flex: 1;
     padding: 15px;
     overflow-y: auto;
-    background-color: #121212;
+    background: linear-gradient(180deg, #111827, #111111);
 }
 
 .message {
@@ -204,11 +242,19 @@ input, select {
     max-width: 80%;
     word-wrap: break-word;
     border: 1px solid #4a4a4a;
+    animation: message-in 0.2s ease-out;
 }
 
 .message.own {
-    background-color: #3a3a3a;
+    background-color: #2f3e59;
     margin-left: auto;
+    border-color: #44608f;
+}
+
+.typing-indicator {
+    padding: 8px 15px 0;
+    font-size: 12px;
+    color: #8ab4f8;
 }
 
 .input-area {
@@ -239,6 +285,22 @@ input, select {
 
 #sendButton:hover {
     background-color: #a4c8fa;
+}
+
+#sendButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@keyframes message-in {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @media (max-width: 600px) {

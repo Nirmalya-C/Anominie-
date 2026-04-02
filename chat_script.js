@@ -92,6 +92,9 @@ function initializeChat(username) {
     const messagesContainer = document.getElementById('messagesContainer');
     const messageInput = document.getElementById('messageInput');
     const sendButton = document.getElementById('sendButton');
+    const typingIndicator = document.getElementById('typingIndicator');
+    const clearChatButton = document.getElementById('clearChatButton');
+    const newMatchButton = document.getElementById('newMatchButton');
     
     // Add welcome message
     addMessage('System', `Welcome to Anominie, ${username}! You are now chatting anonymously.`, true);
@@ -110,15 +113,35 @@ function initializeChat(username) {
         const message = messageInput.value.trim();
         
         if (message) {
+            sendButton.disabled = true;
             addMessage(username, message, true);
             messageInput.value = '';
             
             // Simulate other users responding
             setTimeout(() => {
-                simulateResponse();
-            }, 1000 + Math.random() * 2000);
+                typingIndicator.classList.remove('hidden');
+                setTimeout(() => {
+                    typingIndicator.classList.add('hidden');
+                    simulateResponse();
+                    sendButton.disabled = false;
+                }, 700 + Math.random() * 1000);
+            }, 500 + Math.random() * 600);
         }
     }
+
+    clearChatButton.addEventListener('click', function() {
+        messagesContainer.innerHTML = '';
+        addMessage('System', 'Chat cleared. Start a new conversation.', true);
+    });
+
+    newMatchButton.addEventListener('click', function() {
+        addMessage('System', 'Searching for a new match...', true);
+        setTimeout(() => {
+            const usernames = ['Alex', 'Taylor', 'Jordan', 'Morgan', 'Casey', 'Riley', 'Quinn', 'Harper', 'Avery'];
+            const randomUsername = usernames[Math.floor(Math.random() * usernames.length)];
+            addMessage('System', `You are now connected with ${randomUsername}. Say hi!`, true);
+        }, 900);
+    });
     
     function addMessage(sender, text, isOwn) {
         const messageDiv = document.createElement('div');
@@ -145,11 +168,13 @@ function initializeChat(username) {
             'I agree with you.',
             'Thanks for sharing!',
             'How has your day been?',
-            'That sounds fun!'
+            'That sounds fun!',
+            'What topic do you like most?',
+            'That made me smile!'
         ];
         
         const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-        const usernames = ['Alex', 'Taylor', 'Jordan', 'Morgan', 'Casey', 'Riley', 'Quinn'];
+        const usernames = ['Alex', 'Taylor', 'Jordan', 'Morgan', 'Casey', 'Riley', 'Quinn', 'Harper', 'Avery'];
         const randomUsername = usernames[Math.floor(Math.random() * usernames.length)];
         addMessage(randomUsername, randomResponse, false);
     }
